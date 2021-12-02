@@ -82,22 +82,31 @@ If help is needed, you can use the command: ```curl -sSL https://bit.ly/2ysb0FE 
 
 The only parts that are needed are the Docker images and the binaries for Hyperledger Fabric. 
 
-
+## Running the Blockchain Network and Usage
 ** WORK IN PROGRESS **
 
 To start this application:
 
-First, you will need to start the network and bring it up with:
+First, you will need to start the network and create channels within the network by using the following command after navigating within the ```test-network``` directory:
 
+```
 ./network.sh up createChannel
+```
 
-This will not only bring up the network that will allow us to deploy our chaincode but it will create a channel as well.
+Second, you will need to deploy the chaincode by using this command for our javascript smart contract (chain code). This chaincode can be written in many different languages but I just chose to use Javascript in this case.
 
-Second, you will need to deploy the chaincode by using this command for our javascript smart contract (chain code).
-
+```
 ./network.sh deployCC -ccn basic -ccp ../work-blockchain/chaincode-js -ccl javascript
+```
 
-Once the test network is brought up, you should be able to interact with the network by using ```peer```.
+Once the test network is brought up, you should be able to interact with the network by using ```peer``` CLI.
+
+Make sure you are still within the ```test-network``` directory and if everything was done correctly, you should be able to find the ```bin``` directory within the ```fabric-samples``` repository. Add these binaries to your CLI Path by using the following command:
+
+``` 
+export PATH=${PWD}/../bin:$PATH
+```
+
 
 ** PROBLEMS **
 
