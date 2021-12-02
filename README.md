@@ -2,9 +2,9 @@
 There are prerequisites that have already been downloaded for using hyperledger fabric and this assumes that you have already downloaded said packages.
 This prerequisites are also different for Windows and MacOS, unsure how this would work on Linux.
 
-# Requires:
+## Requirements:
 
-## MacOS:
+### MacOS:
 Curl      <br/>
 Homebrew  <br/>
 Git       <br/>
@@ -13,7 +13,7 @@ jq        <br/>
 SoftHSM   <br/>
 Docker Desktop   <br/>
 
-## Windows:
+### Windows:
 
 Curl      <br/>
 'uname' command (part of Git, but only works with 64bit systems) <br/>
@@ -104,7 +104,24 @@ Once the test network is brought up, you should be able to interact with the net
 Make sure you are still within the ```test-network``` directory and if everything was done correctly, you should be able to find the ```bin``` directory within the ```fabric-samples``` repository. Add these binaries to your CLI Path by using the following command:
 
 ``` 
+
 export PATH=${PWD}/../bin:$PATH
+
+```
+
+Also, make sure that the ```FABRIC_CFG_PATH``` is pointing to the ```core.yaml``` file.
+
+After this, you can set the enviroment variables that allow you to operate the ```peer``` CLI as Org1:
+
+```
+# Environment variables for Org1
+
+export CORE_PEER_TLS_ENABLED=true
+export CORE_PEER_LOCALMSPID="Org1MSP"
+export CORE_PEER_TLS_ROOTCERT_FILE=${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
+export CORE_PEER_MSPCONFIGPATH=${PWD}/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp
+export CORE_PEER_ADDRESS=localhost:7051
+
 ```
 
 
